@@ -8,7 +8,7 @@ pyautogui.useImageNotFoundException(False)
 
 from core.state import check_support_card, check_failure, check_turn, check_mood, check_current_year, check_criteria, check_skill_points_cap
 from core.logic import do_something, do_something_fallback, all_training_unsafe, MAX_FAILURE
-from utils.constants import MOOD_LIST
+from utils.constants import MOOD_LIST, EVENT_REGION, RACE_CARD_REGION, NEXT_BUTTON_CLICK_COORDS
 # Event handling functions integrated directly into execute.py
 
 def count_event_choices():
@@ -434,7 +434,7 @@ def handle_event_choice():
         tuple: (choice_number, success) - choice number (1, 2, 3, etc.) and whether successful
     """
     # Define the region for event name detection
-    event_region = (246, 198, 354, 42)  # Updated region
+    event_region = EVENT_REGION
     
     print("Event detected, scan event")
     
@@ -784,7 +784,7 @@ def race_select(prioritize_g1 = False):
 
       if race_card:
         for x, y, w, h in race_card:
-          region = (x, y, 310, 90)
+          region = (x, y, RACE_CARD_REGION[2], RACE_CARD_REGION[3])
           match_aptitude = pyautogui.locateCenterOnScreen("assets/ui/match_track.png", confidence=0.8, minSearchTime=0.7, region=region)
           if match_aptitude:
             print("[INFO] G1 race found.")
@@ -836,8 +836,8 @@ def race_prep():
 def after_race():
   # Try to click next_btn.png, if not found, click at (185, 900) and wait for it to appear
   if not click(img="assets/buttons/next_btn.png", minSearch=10):
-    print("[INFO] next_btn.png not found, clicking at (185, 900) and waiting...")
-    pyautogui.click(185, 900)
+    print(f"[INFO] next_btn.png not found, clicking at {NEXT_BUTTON_CLICK_COORDS} and waiting...")
+    pyautogui.click(NEXT_BUTTON_CLICK_COORDS[0], NEXT_BUTTON_CLICK_COORDS[1])
     time.sleep(1)  # Wait a bit for the button to appear
     click(img="assets/buttons/next_btn.png", minSearch=10)
   

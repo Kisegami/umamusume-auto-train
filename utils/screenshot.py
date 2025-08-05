@@ -2,7 +2,9 @@ from PIL import Image, ImageEnhance
 import mss
 import numpy as np
 
-def enhanced_screenshot(region=(0, 0, 1920, 1080)) -> Image.Image:
+from utils.constants import DEFAULT_SCREEN_REGION
+
+def enhanced_screenshot(region=DEFAULT_SCREEN_REGION) -> Image.Image:
   with mss.mss() as sct:
     monitor = {
       "left": region[0],
@@ -21,7 +23,7 @@ def enhanced_screenshot(region=(0, 0, 1920, 1080)) -> Image.Image:
 
   return pil_img
 
-def capture_region(region=(0, 0, 1920, 1080)) -> Image.Image:
+def capture_region(region=DEFAULT_SCREEN_REGION) -> Image.Image:
   with mss.mss() as sct:
     monitor = {
       "left": region[0],
@@ -34,7 +36,7 @@ def capture_region(region=(0, 0, 1920, 1080)) -> Image.Image:
     img_rgb = img_np[:, :, :3][:, :, ::-1]
     return Image.fromarray(img_rgb)
 
-def enhanced_screenshot_for_failure(region=(0, 0, 1920, 1080)) -> Image.Image:
+def enhanced_screenshot_for_failure(region=DEFAULT_SCREEN_REGION) -> Image.Image:
   """Enhanced screenshot specifically optimized for white and yellow text on orange background"""
   with mss.mss() as sct:
     monitor = {
@@ -104,7 +106,7 @@ def enhanced_screenshot_for_failure(region=(0, 0, 1920, 1080)) -> Image.Image:
   
   return pil_img
 
-def enhanced_screenshot_for_year(region=(0, 0, 1920, 1080)) -> Image.Image:
+def enhanced_screenshot_for_year(region=DEFAULT_SCREEN_REGION) -> Image.Image:
   """Enhanced screenshot specifically optimized for year text with color (122, 65, 24)"""
   with mss.mss() as sct:
     monitor = {

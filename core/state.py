@@ -6,16 +6,20 @@ from utils.screenshot import capture_region, enhanced_screenshot, enhanced_scree
 from core.ocr import extract_text, extract_number, extract_turn_number, extract_mood_text, extract_failure_text, extract_failure_text_with_confidence
 from core.recognizer import match_template
 
-from utils.constants import SUPPORT_CARD_ICON_REGION, MOOD_REGION, TURN_REGION, FAILURE_REGION, YEAR_REGION, MOOD_LIST, CRITERIA_REGION
+from utils.constants import (
+    SUPPORT_CARD_ICON_REGION, MOOD_REGION, TURN_REGION, FAILURE_REGION, YEAR_REGION, 
+    MOOD_LIST, CRITERIA_REGION, SPD_REGION, STA_REGION, PWR_REGION, GUTS_REGION, WIT_REGION,
+    SKILL_PTS_REGION
+)
 
 # Get Stat
 def stat_state():
   stat_regions = {
-    "spd": (310, 723, 55, 20),
-    "sta": (405, 723, 55, 20),
-    "pwr": (500, 723, 55, 20),
-    "guts": (595, 723, 55, 20),
-    "wit": (690, 723, 55, 20)
+    "spd": SPD_REGION,
+    "sta": STA_REGION,
+    "pwr": PWR_REGION,
+    "guts": GUTS_REGION,
+    "wit": WIT_REGION
   }
 
   result = {}
@@ -369,7 +373,6 @@ def check_criteria():
 
 # Check skill points
 def check_skill_points():
-  from utils.constants import SKILL_PTS_REGION
   img = enhanced_screenshot(SKILL_PTS_REGION)
   number = extract_number(img)
   digits = ''.join(filter(str.isdigit, number))
