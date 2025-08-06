@@ -3,9 +3,40 @@ __pycache__/
 tools/
 screenshots/
 test_screenshots/
+Tesseract-OCR/
 *.pyc
 .DS_Store
 Thumbs.db
 
 # Test files
 test_*.py
+test_*.png
+test_*.jpg
+
+# Debug images and temporary files
+debug_*.png
+debug_*.jpg
+*.png.bak
+screenshot.png
+
+# PC version files (keeping only ADB version)
+core/execute.py
+core/state.py
+core/recognizer.py
+utils/screenshot.py
+utils/constants.py
+main.py
+
+# Test and debug scripts
+test_turn_detection.py
+test_choice_count.py
+debug_template_comparison.py
+test_failure_with_hover.py
+test_failure_simple.py
+fix_debug_messages.py
+
+# Generated/temporary files
+temp_*.png
+temp_*.jpg
+annotated_*.png
+processed_*.png

@@ -1,6 +1,6 @@
 import json
 
-from core.state import check_current_year, stat_state
+from core.state_adb import check_current_year, stat_state
 
 with open("config.json", "r", encoding="utf-8") as file:
   config = json.load(file)
@@ -134,7 +134,8 @@ def do_something(results):
     print("[INFO] All stats capped or no valid training.")
     return None
 
-  if "Pre-Debut" in year:
+  if "Pre-Debut" in year or "Junior Year" in year:
+    print(f"[INFO] {year} detected. Prioritizing training with most support cards to build up rainbow.")
     return most_support_card(filtered)
   else:
     result = rainbow_training(filtered)
@@ -163,7 +164,8 @@ def do_something_fallback(results):
     print("[INFO] All stats capped or no valid training.")
     return None
 
-  if "Pre-Debut" in year:
+  if "Pre-Debut" in year or "Junior Year" in year:
+    print(f"[INFO] {year} detected. Prioritizing training with most support cards to build up stats.")
     return most_support_card(filtered)
   else:
     result = rainbow_training(filtered)

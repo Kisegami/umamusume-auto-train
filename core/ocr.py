@@ -3,10 +3,21 @@ from PIL import Image
 import numpy as np
 import cv2
 import os
+import json
 
 # Configure Tesseract to use the custom trained data
 tessdata_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'tessdata')
 os.environ['TESSDATA_PREFIX'] = tessdata_dir
+
+# Load config and check debug mode
+with open("config.json", "r", encoding="utf-8") as config_file:
+    config = json.load(config_file)
+    DEBUG_MODE = config.get("debug_mode", False)
+
+def debug_print(message):
+    """Print debug message only if DEBUG_MODE is enabled"""
+    if DEBUG_MODE:
+        print(message)
 
 # Try to find tesseract executable automatically
 try:
@@ -312,9 +323,9 @@ def find_best_event_match(ocr_text):
         
         # Debug logging
         if best_match != ocr_text:
-            print(f"[DEBUG] OCR: '{ocr_text}' -> Matched: '{best_match}' (ratio: {best_ratio:.3f})")
+            debug_print(f"[DEBUG] OCR: '{ocr_text}' -> Matched: '{best_match}' (ratio: {best_ratio:.3f})")
         else:
-            print(f"[DEBUG] OCR: '{ocr_text}' -> No match found (best ratio: {best_ratio:.3f})")
+            debug_print(f"[DEBUG] OCR: '{ocr_text}' -> No match found (best ratio: {best_ratio:.3f})")
         
         return best_match
     except Exception as e:

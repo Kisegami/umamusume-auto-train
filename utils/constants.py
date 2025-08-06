@@ -17,7 +17,7 @@ WIT_REGION=(690, 723, 55, 20)
 EVENT_REGION=(246, 198, 354, 42)
 
 # Race selection regions
-RACE_CARD_REGION=(0, 0, 310, 90)  # Dynamic region calculated as (x, y, 310, 90)
+RACE_CARD_REGION=(0, 0, 610, 220)  # Dynamic region calculated as (x, y, 310, 90)
 
 # Click coordinates
 NEXT_BUTTON_CLICK_COORDS=(185, 900)

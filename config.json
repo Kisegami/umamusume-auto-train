@@ -9,15 +9,23 @@
   "minimum_mood": "GREAT",
   "maximum_failure": 15,
   "prioritize_g1_race": false,
-  "skill_point_cap": 1000,
+  "skill_point_cap": 500,
   "enable_skill_point_check": true,
-  "min_support": 0,
-  "do_race_when_bad_training": false,
+  "min_support": 3,
+  "do_race_when_bad_training": true,
   "stat_caps": {
     "spd": 1100,
     "sta": 1100,
     "pwr": 600,
     "guts": 600,
     "wit": 600
-  }
+  },
+  "adb_config": {
+    "device_address": "127.0.0.1:7555",
+    "adb_path": "adb",
+    "screenshot_timeout": 5,
+    "input_delay": 0.5,
+    "connection_timeout": 10
+  },
+  "debug_mode": true
 }
