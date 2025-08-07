@@ -233,6 +233,9 @@ def check_mood():
         
         # Apply character replacements to fix common OCR errors
         mood_text_corrected = mood_text.upper()
+        # Fix NORMAL misreads
+        if 'NORMAD' in mood_text_corrected:
+            mood_text_corrected = 'NORMAL'
         # Fix AWFUL misreads
         mood_text_corrected = mood_text_corrected.replace('VAWFUD', 'AWFUL')
         mood_text_corrected = mood_text_corrected.replace('WAWFUD', 'AWFUL')
