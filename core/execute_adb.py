@@ -1196,7 +1196,7 @@ def career_lobby():
             
             # URA race logic would go here
             debug_print("[DEBUG] Starting URA race...")
-            if click("assets/buttons/races_btn.png", minSearch=10):
+            if click("assets/buttons/race!_btn.png", minSearch=10):
                 time.sleep(0.5)
                 # Click race button 2 times after entering race menu
                 for i in range(2):
